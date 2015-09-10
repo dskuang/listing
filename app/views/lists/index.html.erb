@@ -1,0 +1,18 @@
+<h2>Import Lists</h2>
+<%= form_tag import_lists_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+
+<form class="" action="<%=lists_url%>" method="get">
+  <label>Street
+    <input type="text" name="street" value=""></label>
+    <input type ="submit" value="Search">
+</form>
+
+
+
+<br>
+
+
+<%= @allfeature %>
