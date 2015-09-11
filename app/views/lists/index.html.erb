@@ -6,13 +6,47 @@
 
 <form class="" action="<%=lists_url%>" method="get">
   <label>Street
-    <input type="text" name="street" value=""></label>
-    <input type ="submit" value="Search">
+    <input type="text" name="list[street]" value=""></label>
+  <br>
+  <label>Status
+    <select name="list[status]" value="">
+        <option value="pending">Pending</option>
+        <option value="active">Active</option>
+        <option value="sold">Sold</option>
+    </select>
+  </label>
+  <br>
+  <label>Min Price
+    <input type="text" name="list[min_price]" value=""></label>
+  <br>
+  <label>Max Price
+    <input type="text" name="list[max_price]" value=""></label>
+  <br>
+  <label>Min Bed
+    <input type="text" name="list[min_bed]" value=""></label>
+  <br>
+  <label>Max Bed
+    <input type="text" name="list[max_bed]" value=""></label>
+  <br>
+  <label>Min Bath
+    <input type="text" name="list[min_bath]" value=""></label>
+  <br>
+  <label>Max Bath
+    <input type="text" name="list[max_bath]" value=""></label>
+  <br>
+  <label>Min Sq Ft.
+    <input type="text" name="list[min_sq_ft]" value=""></label>
+  <br>
+  <label>Max Sq Ft.
+    <input type="text" name="list[max_sq_ft]" value=""></label>
+  <br>
+  <input type ="submit" value="Search">
 </form>
-
-
 
 <br>
 
 
 <%= @allfeature %>
+<%= @lists %>
+
+<div id ='map'></div>
