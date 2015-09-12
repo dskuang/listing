@@ -1,52 +1,84 @@
-<h2>Import Lists</h2>
-<%= form_tag import_lists_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import" %>
-<% end %>
+<div class="import-container">
+  <p class="import-list-title">Add more CSV entries</p>
+  <%= form_tag import_lists_path, multipart: true do %>
+    <%= file_field_tag :file%>
+    <%= submit_tag "Import", :class=>'import-button btn btn-primary' %>
+  <% end %>
+</div>
 
-<form class="" action="<%=lists_url%>" method="get">
-  <label>Street
-    <input type="text" name="list[street]" value=""></label>
-  <br>
-  <label>Status
-    <select name="list[status]" value="">
-        <option value="pending">Pending</option>
-        <option value="active">Active</option>
-        <option value="sold">Sold</option>
-    </select>
-  </label>
-  <br>
-  <label>Min Price
-    <input type="text" name="list[min_price]" value=""></label>
-  <br>
-  <label>Max Price
-    <input type="text" name="list[max_price]" value=""></label>
-  <br>
-  <label>Min Bed
-    <input type="text" name="list[min_bed]" value=""></label>
-  <br>
-  <label>Max Bed
-    <input type="text" name="list[max_bed]" value=""></label>
-  <br>
-  <label>Min Bath
-    <input type="text" name="list[min_bath]" value=""></label>
-  <br>
-  <label>Max Bath
-    <input type="text" name="list[max_bath]" value=""></label>
-  <br>
-  <label>Min Sq Ft.
-    <input type="text" name="list[min_sq_ft]" value=""></label>
-  <br>
-  <label>Max Sq Ft.
-    <input type="text" name="list[max_sq_ft]" value=""></label>
-  <br>
-  <input type ="submit" value="Search">
-</form>
+<div class="center-container">
+  <form class="input-listing" action="<%=lists_url%>" method="get">
+    <label>Street
+      <input class="form-control" type="text" name="street" value=""></label>
+    <br>
+    <label>Status
+      <select class="form-control" name="status" value="">
+          <option value=""></option>
+          <option value="pending">Pending</option>
+          <option value="active">Active</option>
+          <option value="sold">Sold</option>
+      </select>
+    </label>
+    <br>
+    <label>Min Price
+      <input class="form-control" type="text" name="min_price" ></label>
+    <br>
+    <label>Max Price
+      <input class="form-control" type="text" name="max_price" ></label>
+    <br>
+    <label>Min Bed
+      <input class="form-control" type="text" name="min_bed" ></label>
+    <br>
+    <label>Max Bed
+      <input class="form-control" type="text" name="max_bed" ></label>
+    <br>
+    <label>Min Bath
+      <input class="form-control" type="text" name="min_bath" ></label>
+    <br>
+    <label>Max Bath
+      <input class="form-control" type="text" name="max_bath" ></label>
+    <br>
+    <label>Min Sq Ft.
+      <input class="form-control" type="text" name="min_sq_ft" ></label>
+    <br>
+    <label>Max Sq Ft.
+      <input class="form-control" type="text" name="max_sq_ft" ></label>
+    <br>
+    <input class="btn btn-primary" type="submit" value="Search">
+  </form>
 
-<br>
 
+  <div id ='map'></div>
+</div>
+<div class="features"></div>
 
-<%= @allfeature %>
-<%= @lists %>
+<script>
+$(".input-listing").on("submit", function(e) {
+   e.preventDefault();
+   L.mapbox.accessToken = 'pk.eyJ1IjoiZHNrdWFuZyIsImEiOiIwMmNiYjYyNjhiZjZhZTY3YmM2MGJlYzRlZTk5OGU5MiJ9.BCDqhKft-Nvohw6VM_8AWQ';
 
-<div id ='map'></div>
+   if (map.options === undefined) {
+     map = L.mapbox.map('map', 'dskuang.cieeivryr0257s0kqr17y3nct')
+     .setView([37.8, -96], 4);
+   }
+  var formData = $(e.currentTarget).serializeJSON();
+  var query_string = "";
+  for(var i in formData) {
+    if (formData[i] === undefined) {
+      formData[i] = ""
+    }
+     var newstr = i +"="+ formData[i] + "&"
+     query_string += newstr
+  }
+  query_string = query_string.substring(0, query_string.length - 1);
+
+     $.ajax({
+        dataType: 'json',
+        url: '/lists?' + query_string,
+        success: function(data) {
+          map.featureLayer.setGeoJSON(data.features);
+          $(".features").html(JSON.stringify(data));
+        }
+      })
+  });
+</script>

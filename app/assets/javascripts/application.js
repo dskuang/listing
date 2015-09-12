@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require serialize_json
+//= require bootstrap
 //= require_tree .

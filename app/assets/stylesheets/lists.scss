@@ -5,9 +5,44 @@
 
 #map {
   border: 1px solid black;
-  position: absolute;
-  top: 400px;
-  bottom: 0;
+  float:left;
+
   width: 700px;
   height: 700px;
+}
+
+
+.center-container {
+  margin:0 auto;
+  width: 957px;
+  margin-top: 100px;
+}
+
+.features {
+  width: 883px;
+  margin: 0 auto;
+  height: 700px;
+  margin-top: 68px;
+}
+
+.input-listing{
+  float:left;
+  margin-right: 59px;
+}
+
+.center-container:after{
+  content: "";
+  display: block;
+  clear: both;
+
+}
+
+.import-container {
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+
+.import-button {
+  margin-top: 10px;
 }
