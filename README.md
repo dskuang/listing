@@ -23,5 +23,5 @@ of more than 2000 or so may cause a set timeout to the webapp.
 
 
 In the future, I would definitely try to include pagination, since 10000
-search results definitely stretches the page. I may add more styling so that
-there is better user experience.
+search results definitely stretches the page. Anything past 4000 will also lag
+the page. I may add more styling so that there is better user experience.
