@@ -2,7 +2,7 @@
 
 [here]: http://www.opendoorapp.herokuapp.com
 
-Listing app can be found ![here]
+Listing app can be found [here]
 
 Listing app allows a user to search for housing with filtered entries.
 The user can choose minimum/maximum bedrooms, minimum/maximum bathrooms,
