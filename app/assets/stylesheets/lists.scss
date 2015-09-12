@@ -38,11 +38,16 @@
 }
 
 .import-container {
-  right: 0;
-  top: 0;
+  right: 74px;
+  top: 100px;
   position: absolute;
 }
 
 .import-button {
   margin-top: 10px;
+}
+
+
+.import-list-title {
+  font-weight: bold;
 }
