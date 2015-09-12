@@ -1,6 +1,6 @@
 # Listing
 
-[here]: http://www.opendoorapp.herokuapp.com
+[here]: opendoorapp.herokuapp.com
 
 Listing app can be found [here]
 
