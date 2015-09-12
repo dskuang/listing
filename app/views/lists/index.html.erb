@@ -53,14 +53,14 @@
 <div class="features"></div>
 
 <script>
+L.mapbox.accessToken = 'pk.eyJ1IjoiZHNrdWFuZyIsImEiOiIwMmNiYjYyNjhiZjZhZTY3YmM2MGJlYzRlZTk5OGU5MiJ9.BCDqhKft-Nvohw6VM_8AWQ';
+if (map.options === undefined) {
+  map = L.mapbox.map('map', 'dskuang.cieeivryr0257s0kqr17y3nct')
+  .setView([37.8, -96], 4);
+}
 $(".input-listing").on("submit", function(e) {
    e.preventDefault();
-   L.mapbox.accessToken = 'pk.eyJ1IjoiZHNrdWFuZyIsImEiOiIwMmNiYjYyNjhiZjZhZTY3YmM2MGJlYzRlZTk5OGU5MiJ9.BCDqhKft-Nvohw6VM_8AWQ';
 
-   if (map.options === undefined) {
-     map = L.mapbox.map('map', 'dskuang.cieeivryr0257s0kqr17y3nct')
-     .setView([37.8, -96], 4);
-   }
   var formData = $(e.currentTarget).serializeJSON();
   var query_string = "";
   for(var i in formData) {
