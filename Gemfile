@@ -26,7 +26,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'roo'
 gem 'rgeo-geojson'
 
-gem 'byebug'
 
 gem 'serialize_json-rails'
 gem 'bootstrap-sass'
