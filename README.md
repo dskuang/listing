@@ -2,31 +2,23 @@
 
 [here]: http://www.opendoorapp.herokuapp.com
 
+Listing app can be found ![here]
 
-Listing app is allows a user to search for housing by entering in
-certain requirements. The user can choose between
+Listing app allows a user to search for housing with filtered entries.
+The user can choose minimum/maximum bedrooms, minimum/maximum bathrooms,
+minimum/maximum square feet, street address, and price range. Mapbox API
+is integrated to allow the user to see exactly where the houses are.
+Mapbox API uses the geoJSON response sent back from the controller in order
+to pinpoint houses. Basic bootstrap was added to allow better user experience.
+The data inputted is from
+https://s3.amazonaws.com/opendoor-problems/listings.csv
+The data had 10000 entries and heroku doesn't allow importing files that
+big so the data was imported in batches of 2000 entries. A user can import
+more entries into the app by clicking import in the top right but batches
+of more than 2000 or so may cause a set timeout to the webapp.
 
-- [x] Create accounts
-- [x] Create sessions (log in)
 
 
-
-The main functionalities include user authentication, creating posts with
-different types of file uploads based on Filepicker API, trending blogs and posts,
-reblogging, and following/liking capabilities. Notifications are ordered based
-
-
-- [x] pop-out different user showpage
-- [x] Pagination/infinite scroll
-- [x] Typeahead search bar
-
-[phase-one]: ./docs/phases/phase1.md
-[phase-two]: ./docs/phases/phase2.md
-[phase-three]: ./docs/phases/phase3.md
-[phase-four]: ./docs/phases/phase4.md
-[phase-five]: ./docs/phases/phase5.md
-[heroku-link]: www.stumblr.xyz
-[start]: ./photos/start.gif
-[like_follow]: ./photos/like_follow.gif
-[makePost]: ./photos/makingAPost.gif
-[makePostA]: ./photos/makePostAnywhere.gif
+In the future, I would definitely try to include pagination, since 10000
+search results definitely stretches the page. I may add more styling so that
+there is better user experience.
