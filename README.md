@@ -14,8 +14,11 @@ Basic bootstrap/SASS was added to allow better user experience.
 The data inputted is from
 https://s3.amazonaws.com/opendoor-problems/listings.csv
 The data had 10000 entries and heroku doesn't allow importing files that
-big so the data was imported in batches of 2000 entries. A user can import
-more entries into the app by clicking import in the top right but batches
+big so the data was imported in batches of 2000 entries. There are currently
+9000 entries. Heroku only allows a maximum of 10000 entries in the database for
+the basic plan so if a user inputs more than 1000 entries then
+the database will being blocking insertion of entries. To import
+more entries into the app click the import button in the top right. Batches
 of more than 2000 or so may cause a set timeout to the webapp.
 
 
