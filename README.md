@@ -10,7 +10,7 @@ minimum/maximum square feet, street address, and price range. The app was built
 with Ruby on Rails and javascript AJAX. Mapbox API was integrated to allow the
 user to see exactly where the houses are. Mapbox API uses the geoJSON
 response sent back from the controller in order to pinpoint houses.
-Basic bootstrap was added to allow better user experience.
+Basic bootstrap/SASS was added to allow better user experience.
 The data inputted is from
 https://s3.amazonaws.com/opendoor-problems/listings.csv
 The data had 10000 entries and heroku doesn't allow importing files that
