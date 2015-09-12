@@ -76,7 +76,6 @@ $(".input-listing").on("submit", function(e) {
         dataType: 'json',
         url: '/lists?' + query_string,
         success: function(data) {
-          debugger
           map.featureLayer.setGeoJSON(data.features);
           $(".features").html(JSON.stringify(data));
         }
