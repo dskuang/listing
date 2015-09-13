@@ -30,7 +30,7 @@ gem 'byebug'
 gem 'serialize_json-rails'
 gem 'bootstrap-sass'
 gem 'unicorn'
-
+gem 'kaminari'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

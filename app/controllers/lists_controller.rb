@@ -3,7 +3,6 @@ require "yaml"
 
 class ListsController < ApplicationController
   def index
-
       @allfeatures = {}
       @allfeatures["type"] = "FeatureCollection"
       @allfeatures["features"] = []
@@ -11,12 +10,10 @@ class ListsController < ApplicationController
       query_string = []
       query_values = []
 
-
       if (params[:min_bed] != "" && params[:max_bed] != "")
         query_string << "bedrooms between ? and ?"
         query_values << params[:min_bed]
         query_values << params[:max_bed]
-
       elsif params[:min_bed] != ""
         query_string << "bedrooms >= ?"
         query_values << params[:min_bed]
@@ -71,7 +68,8 @@ class ListsController < ApplicationController
         query_values << params[:street]
       end
 
-      @lists = List.where(query_string.join(" AND "), *query_values)
+      @lists = List.where(query_string.join(" AND "), *query_values).page(params[:page].to_i).per(10)
+      @allfeatures["total_pages"] = @lists.total_pages
 
       @lists.each do |list|
         newlist = list.attributes
@@ -89,6 +87,7 @@ class ListsController < ApplicationController
         @allfeatures["features"] << feature
 
       end
+
 
       respond_to do |format|
         format.html

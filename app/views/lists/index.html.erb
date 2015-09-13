@@ -46,8 +46,6 @@
     <br>
     <input class="search-button btn btn-primary" type="submit" value="Search">
   </form>
-
-
   <div id ='map'></div>
 </div>
 <div class="features"></div>
@@ -58,27 +56,59 @@ if (map.options === undefined) {
   map = L.mapbox.map('map', 'dskuang.cieeivryr0257s0kqr17y3nct')
   .setView([37.8, -96], 4);
 }
-$(".input-listing").on("submit", function(e) {
-   e.preventDefault();
 
-  var formData = $(e.currentTarget).serializeJSON();
+$(document).ready(function() {
+   $(window).off("scroll"); // remove previous listeners
+   var throttledCallback = _.throttle(nextPage, 200);
+   $(window).on("scroll", throttledCallback);
+ });
+
+ $(".input-listing").on("submit", function(e) {
+    e.preventDefault();
+    this.page_number = 0;
+    this.total_pages = 0;
+    this.allData = {"type": "FeatureCollection"};
+    this.allData["features"] = [];
+
+    this.formData = $(e.currentTarget).serializeJSON();
+    this.query_string = createQueryString(this.formData);
+    getLists(this.query_string);
+ }.bind(this));
+
+function getLists(query_string) {
+  $.ajax({
+     dataType: 'json',
+     url: '/lists?' + query_string,
+     success: function(data) {
+       this.allData.features = this.allData.features.concat(data.features);
+       this.total_pages = data.total_pages
+       delete data.total_pages
+       map.featureLayer.setGeoJSON(this.allData);
+       $(".features").html(JSON.stringify(this.allData));
+     }.bind(this)
+   });
+}
+
+function createQueryString(formData) {
+  this.page_number += 1;
   var query_string = "";
+  formData["page"] = this.page_number;
   for(var i in formData) {
-    if (formData[i] === undefined) {
-      formData[i] = ""
-    }
-     var newstr = i +"="+ formData[i] + "&"
-     query_string += newstr
+    var newstr = i +"="+ formData[i] + "&";
+    query_string += newstr;
   }
   query_string = query_string.substring(0, query_string.length - 1);
+  return query_string;
+}
 
-     $.ajax({
-        dataType: 'json',
-        url: '/lists?' + query_string,
-        success: function(data) {
-          map.featureLayer.setGeoJSON(data.features);
-          $(".features").html(JSON.stringify(data));
-        }
-      })
-  });
+function nextPage() {
+  if ($(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+    if (this.page_number < this.total_pages) {
+      this.query_string = createQueryString(this.formData);
+      getLists(this.query_string);
+    }
+  }
+}
+
+
 </script>

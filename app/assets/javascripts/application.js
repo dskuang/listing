@@ -16,3 +16,4 @@
 //= require serialize_json
 //= require bootstrap
 //= require_tree .
+//= require underscore

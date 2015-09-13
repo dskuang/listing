@@ -10,7 +10,10 @@ minimum/maximum square feet, street address, and price range. The app was built
 with Ruby on Rails and javascript AJAX. Mapbox API was integrated to allow the
 user to see exactly where the houses are. Mapbox API uses the geoJSON
 response sent back from the controller in order to pinpoint houses.
-Basic bootstrap/SASS was added to allow better user experience.
+Basic bootstrap/SASS was added to allow better user experience. Furthermore,
+kaminari pagination was included along with infinite scroll. The ajax will
+fetch the next 10 models and append it to the view. This stopped the screen
+from blowing up when a user selects all listings possible.
 The data inputted is from
 https://s3.amazonaws.com/opendoor-problems/listings.csv
 The data had 10000 entries and heroku doesn't allow importing files that
@@ -22,6 +25,6 @@ more entries into the app click the import button in the top right. Batches
 of more than 1000 or so may cause a set timeout to the webapp.
 
 
-In the future, I would definitely try to include pagination, since 10000
-search results definitely stretches the page. Anything past 4000 will also lag
-the page. I may add more styling so that there is better user experience.
+In the future, I may add more styling so that there is better user experience.
+I'm not sure at the moment if there is a faster way to pull data from the
+database; however, I will look into it.
