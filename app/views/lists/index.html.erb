@@ -52,11 +52,13 @@
 
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiZHNrdWFuZyIsImEiOiIwMmNiYjYyNjhiZjZhZTY3YmM2MGJlYzRlZTk5OGU5MiJ9.BCDqhKft-Nvohw6VM_8AWQ';
+//only set the map variable if map is still undefined
 if (map.options === undefined) {
   map = L.mapbox.map('map', 'dskuang.cieeivryr0257s0kqr17y3nct')
   .setView([37.8, -96], 4);
 }
 
+//listens to the window scroll
 $(document).ready(function() {
    $(window).off("scroll"); // remove previous listeners
    var throttledCallback = _.throttle(nextPage, 200);
@@ -69,9 +71,10 @@ $(document).ready(function() {
     this.total_pages = 0;
     this.allData = {"type": "FeatureCollection"};
     this.allData["features"] = [];
-
+    //gets the form data and serializes it into a js object
     this.formData = $(e.currentTarget).serializeJSON();
     this.query_string = createQueryString(this.formData);
+    //calls the ajax function with query string
     getLists(this.query_string);
  }.bind(this));
 
@@ -83,6 +86,7 @@ function getLists(query_string) {
        this.allData.features = this.allData.features.concat(data.features);
        this.total_pages = data.total_pages
        delete data.total_pages
+       //maps out the points from the feature geo json returned by controller
        map.featureLayer.setGeoJSON(this.allData);
        $(".features").html(JSON.stringify(this.allData));
      }.bind(this)
@@ -90,6 +94,7 @@ function getLists(query_string) {
 }
 
 function createQueryString(formData) {
+  //increases page number and returns query string from formdata
   this.page_number += 1;
   var query_string = "";
   formData["page"] = this.page_number;
@@ -97,14 +102,18 @@ function createQueryString(formData) {
     var newstr = i +"="+ formData[i] + "&";
     query_string += newstr;
   }
+  //removes last character of query string
   query_string = query_string.substring(0, query_string.length - 1);
   return query_string;
 }
 
 function nextPage() {
+  //checks if the scroll reaches the end of the page
   if ($(window).scrollTop() > $(document).height() - $(window).height() - 50) {
     if (this.page_number < this.total_pages) {
+      //creates query string from form data
       this.query_string = createQueryString(this.formData);
+      //calls ajax function again with next page number
       getLists(this.query_string);
     }
   }

@@ -14,6 +14,7 @@ Basic bootstrap/SASS was added to allow better user experience. Furthermore,
 kaminari pagination was included along with infinite scroll. The ajax will
 fetch the next 10 models and append it to the view. This stopped the screen
 from blowing up when a user selects all listings possible.
+
 The data inputted is from
 https://s3.amazonaws.com/opendoor-problems/listings.csv
 The data had 10000 entries and heroku doesn't allow importing files that
@@ -24,6 +25,9 @@ the database will being blocking insertion of entries. To import
 more entries into the app click the import button in the top right. Batches
 of more than 1000 or so may cause a set timeout to the webapp.
 
+Please note that entering a query string into the url will not actually query anything.
+I'm using a custom ajax call in order to map and paginate my lists, which only
+gets called when you press the Search button.
 
 In the future, I may add more styling so that there is better user experience.
 I'm not sure at the moment if there is a faster way to pull data from the

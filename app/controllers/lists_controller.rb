@@ -72,31 +72,26 @@ class ListsController < ApplicationController
               .page(params[:page].to_i)
               .per(10)
       @allfeatures["total_pages"] = @lists.total_pages
-
       @lists.each do |list|
         newlist = list.attributes
         newlist.delete("lat")
         newlist.delete("lng")
         newlist.delete("updated_at")
         newlist.delete("created_at")
-        newlist["marker-size"] = "large"
+        newlist["marker-size"] = "medium"
         newlist["marker-color"] = "#fc4353"
-        newlist["marker-symbol"] ="monument"
+        newlist["marker-symbol"] = "building"
         feature = {}
         feature["type"] = "Feature"
         feature["geometry"] = {"type" => "Point", "coordinates" => [list.lng, list.lat]}
         feature["properties"] = newlist
         @allfeatures["features"] << feature
-
       end
-
 
       respond_to do |format|
         format.html
         format.json { render json: @allfeatures }
       end
-
-
   end
 
   def import
