@@ -1,11 +1,3 @@
-<div class="import-container">
-  <p class="import-list-title">Add more CSV entries</p>
-  <%= form_tag import_lists_path, multipart: true do %>
-    <%= file_field_tag :file%>
-    <%= submit_tag "Import", :class=>'import-button btn btn-primary' %>
-  <% end %>
-</div>
-
 <div class="center-container">
   <form class="input-listing" action="<%=lists_url%>" method="get">
     <label>Street
@@ -47,6 +39,14 @@
     <input class="search-button btn btn-primary" type="submit" value="Search">
   </form>
   <div id ='map'></div>
+  <div class="import-container">
+    <p class="import-list-title">Add more CSV entries</p>
+    <%= form_tag import_lists_path, multipart: true do %>
+      <%= file_field_tag :file%>
+      <%= submit_tag "Import", :class=>'import-button btn btn-primary' %>
+    <% end %>
+  </div>
+
 </div>
 <div class="features"></div>
 
