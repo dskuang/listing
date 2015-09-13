@@ -42,7 +42,7 @@ class ListsController < ApplicationController
         query_string << "sq_ft >= ?"
         query_values << params[:min_sq_ft]
       elsif params[:max_sq_ft] != ""
-        query_string << "sq_ft >= ?"
+        query_string << "sq_ft <= ?"
         query_values << params[:max_sq_ft]
       end
 
@@ -54,7 +54,7 @@ class ListsController < ApplicationController
         query_string << "bathrooms >= ?"
         query_values << params[:min_bath]
       elsif params[:max_bath] != ""
-        query_string << "bathrooms >= ?"
+        query_string << "bathrooms <= ?"
         query_values << params[:max_bath]
       end
 
