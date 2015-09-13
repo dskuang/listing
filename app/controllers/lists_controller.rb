@@ -68,7 +68,9 @@ class ListsController < ApplicationController
         query_values << params[:street]
       end
 
-      @lists = List.where(query_string.join(" AND "), *query_values).page(params[:page].to_i).per(10)
+      @lists = List.where(query_string.join(" AND "), *query_values)
+              .page(params[:page].to_i)
+              .per(10)
       @allfeatures["total_pages"] = @lists.total_pages
 
       @lists.each do |list|
